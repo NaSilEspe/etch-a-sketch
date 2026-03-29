@@ -15,9 +15,20 @@ function createGrid(size) {
     cell.style.width = `${cellSize}px`;
     cell.style.height = `${cellSize}px`;
 
-    // Efecto hover
+   // Efecto hover
     cell.addEventListener("mouseover", () => {
-      cell.style.backgroundColor = "black";
+      // Color RGB random
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      
+      // Oscurecimiento progresivo
+      const currentOpacity = parseFloat(cell.dataset.opacity) || 0;
+      const newOpacity = Math.min(currentOpacity + 0.1, 1);
+      cell.dataset.opacity = newOpacity;
+      
+      cell.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+      cell.style.opacity = newOpacity;
     });
 
     container.appendChild(cell);
